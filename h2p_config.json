@@ -1,0 +1,28 @@
+{
+    "pages": {
+        "count": 100,
+        "paper-width":      "210mm",
+        "paper-height":     "297mm",
+        "crop-size":        "0mm",
+        "bleed":            "0mm",
+        "margin-inside":    "40mm",
+        "margin-outside":   "10mm",
+        "margin-bottom":    "25mm",
+        "margin-top":       "10mm",
+        "header-height":    "10mm",
+        "footer-height":    "10mm",
+        "header-text":      "''",
+        "footer-text":      "''",
+        "mirror":           "true"
+    },
+
+    "styles": {
+        "print": "print.css"
+    },
+
+    "scripts": [
+            "js/jquery-2.1.0.min.js"
+    ],
+
+    "route": "#print"
+}

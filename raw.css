@@ -1,0 +1,750 @@
+
+@import url('https://fonts.googleapis.com/css?family=Alegreya');
+@import url('https://fonts.googleapis.com/css?family=Proza+Libre:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Space+Mono');
+@import url('https://fonts.googleapis.com/css?family=Nothing+You+Could+Do');
+@import url('https://fonts.googleapis.com/css?family=Reenie+Beanie');
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+@import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative');
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Gruppo');
+@import url('https://fonts.googleapis.com/css?family=Creepster');
+@import url('https://fonts.googleapis.com/css?family=Chelsea+Market');
+@import url('https://fonts.googleapis.com/css?family=Uncial+Antiqua');
+@import url('https://fonts.googleapis.com/css?family=Asul:400,700');
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Neuton:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Overpass:400,400i,700');
+
+
+
+
+#h2p-viewport{
+    z-index: 99;
+}
+
+
+
+/*******************************************************
+                        Generic
+*******************************************************/
+
+
+
+html, body, h1, h2, h3, h4{
+    margin: 0;
+    padding: 0;
+}
+
+
+body{ 
+    font-family: 'Proza Libre', sans-serif;
+}
+
+
+h1, h2, h3, h4, h5 {
+  page-break-after: avoid;
+}
+
+h1 { 
+    font-size: 1.8vw;
+}
+
+h2 {
+
+
+    text-indent: 10px;
+}
+
+h4 {
+
+    padding-bottom: 5%;
+
+}
+
+a, a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+    color:black;
+}
+
+sup, sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+}
+
+sub { 
+  top: 0.4em; 
+}
+
+
+
+/*******************************************************
+                        PRINT
+*******************************************************/
+
+#print{
+    cursor: pointer;
+    left: 1%;
+    position: absolute;
+    top: 35%;
+}
+
+#print img{
+
+    width: 4%;
+
+}
+
+
+/*page*/
+
+@page {
+  /*size: A4 portrait;*/
+}
+
+@page :left {
+  margin-left: 3cm;
+}
+
+@page :right {
+  margin-left: 4cm;
+}
+
+
+/*hide things*/
+
+.footnote-list-print{
+    display: none;
+}
+
+.header-print{
+    display: none;
+}
+
+.title-print{
+    font-size: 40pt;
+}
+
+
+
+@media print{
+    /*.pagebreak{*/
+        /*page-break-after: always;*/
+    /*}*/
+
+    .sidenav {
+
+        width: 100%;
+    }
+
+    .sidenav a{
+
+        display: block;
+    }
+
+    .pagebreak{
+        page-break-after: always;
+        break-after: page;
+    }
+
+    .chapter-header{
+        page-break-before: always;
+        page-break-after: always;
+        break-before: page;
+        break-after: page;
+    }
+
+    .chapter-2 {
+
+        background-color: black;
+        color: white;
+    }
+
+    .abstract {
+
+        display: block;
+    }
+
+    .footnote-list-print{
+        display: inline-block;
+    }
+
+    .footnote-item-print{
+        color: black;
+    }
+
+
+    .header, .header *{
+        display: none !important;
+    }
+
+    .images {
+      display: none;
+    }
+}
+
+/*******************************************************
+                        Header
+*******************************************************/
+
+
+
+
+
+
+#title {
+    width: 100%;
+    height: 5%;
+    z-index:1;
+    position: fixed;
+    top: 0;
+}
+
+
+.header{
+    padding-bottom: 1.5rem;
+    padding-left: 5%;
+    background-color: white;
+    box-shadow: 0px 11px 10px 11px white;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    width: 100%;
+}
+
+.title{
+    color: black;
+    max-height: 40px;
+    margin: 2px;
+ }
+
+
+.title:hover{
+    cursor: s-resize;
+}
+
+
+
+/*******************************************************
+                    SIDE NAVIGATION
+*******************************************************/
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        background-color: white;
+        overflow-x: hidden;
+        transition: 0.5s;
+        box-shadow: 15px 0px 10px 0px white;
+        padding-top: 40px;
+
+    }
+
+    .sidenav a {
+        padding: 8px 4px 4px 75px;
+        text-decoration: none;
+        font-size: 1.6vh ;
+        color: black;
+        display: block;
+        transition: 0.3s;
+        font-family: 'Proza Libre', sans-serif;
+
+    }
+
+    .sidenav a:hover, .offcanvas a:focus{
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+
+    .subtitle {
+
+        text-indent: 4%;
+    }
+
+    .sidenav a.active{
+        color: red;
+    }
+
+
+/*******************************************************
+                Abstract / Foreword
+*******************************************************/
+
+
+
+.abstract {
+    padding-top: 5%;
+    font-size: 1.8vw;
+    display: inline-block;
+    width: 60%;
+
+}
+
+.abstract:hover {
+    cursor: zoom-in;
+}
+
+.epilogue {
+
+    padding-top: 5%;
+    font-size: 1.8vw;
+    display: inline-block;
+    width: 60%;
+}
+
+.foreword {
+    padding-top: 5%;
+    font-size: 1.8vw;
+    display: inline-block;
+    width: 60%;
+
+}
+
+
+
+
+
+/*******************************************************
+                        Cimlap
+*******************************************************/
+@-webkit-keyframes color {
+    0%{background-position:0 19%}
+    50%{background-position:100% 82%}
+    100%{background-position:0 19%}
+}
+@-moz-keyframes color {
+    0%{background-position:0 19%}
+    50%{background-position:100% 82%}
+    100%{background-position:0 19%}
+}
+@keyframes color { 
+    0%{background-position:0 19%}
+    50%{background-position:100% 82%}
+    100%{background-position:0 19%}
+}
+
+@keyframes blur {
+    0% { -webkit-filter: blur(0px);}
+    50% { -webkit-filter: blur(5px);}
+    100% { -webkit-filter: blur(0px);}
+}
+
+
+
+.coverpage h3{
+
+    font-size: 8vw;
+    padding: 5%;
+    text-transform: uppercase;
+    /*text-align: justify;*/
+    line-height: 1.3em;
+    font-family: 'Asul', sans-serif;
+    filter: blur(5px);
+    transition: 2s -webkit-filter linear;
+}
+
+.coverpage {
+
+    background: linear-gradient(111deg, #000000, #ffffff);
+    background-size: 600% 600%;
+
+    -webkit-animation: color 27s ease infinite;
+    -moz-animation: color 27s ease infinite;
+    animation: color 27s ease infinite;
+
+    padding: 10px;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.author {
+
+    border-bottom: solid 1px black;
+    }
+
+.date { 
+    padding-left: 5%;
+}
+
+
+.meta {
+
+    font-family: 'Proza Libre', sans-serif;    
+    font-size: 1.8vw;
+    display: flex;
+    font-style:italic;
+    padding-left: 5%;
+    padding-bottom: 5%;
+}
+
+/*******************************************************
+                        Chapters
+*******************************************************/
+
+.chapter-content{
+    display: flex;
+    padding-top: 5%;
+
+}
+
+.chapter-content-2{
+    padding-top: 5%;
+    margin-right: 10% !important
+
+}
+.chapter-content-2 .text {
+
+    font-size: 2.2vw;
+}
+
+#chapter-2 .text {
+
+    display: inline;
+}
+
+#chapter-1 p::selection {
+    background:blue;
+}
+
+#chapter-2 p::selection {
+    background:orange;
+}
+
+#chapter-3 p::selection {
+    background:red;
+}
+
+
+#chapter-1 h4 {
+
+    font-size: 13.5vw;
+    font-family: 'Creepster', cursive;
+    /*font-family: 'Chelsea Market', cursive;*/
+
+    margin-right: 5%;
+
+}
+
+
+#chapter-2 h4 {
+
+    font-family: 'Cinzel Decorative', cursive;
+    margin-right: 5%;
+    font-size: 9vw;
+
+}
+
+
+
+.chapter-content-2 h3 {
+    /*font-weight: 700;*/
+    letter-spacing: 1px;
+    font-size: 6.2vh;
+    /*border-bottom: solid 2px white;*/
+    color: white;
+    padding-top: 5%;
+
+
+}
+
+#chapter-3 h4 {
+
+    font-family: 'Nothing You Could Do', cursive;
+    font-size: 7vw;
+
+}
+
+.chapter-content-3 {
+
+    display: flex;
+}
+
+.chapter-content-3 .text {
+
+    flex:1;
+}
+
+.quote {
+    padding-left: 10%;
+}
+
+
+.section {
+
+    padding-top: 5%;
+}
+
+#chapter {
+
+    padding-bottom: 10%;
+}
+
+.chapter{
+    padding-left: 5%;
+    font-size: 1.8vw;
+}
+
+.text{
+    flex: 1;
+    margin-right: 5%;
+}
+
+.high {
+
+    background: white;
+    padding: 3px;
+}
+
+/*Footnotes*/
+
+#chapter-1 #ref{
+    font-style: italic;
+    cursor: -webkit-zoom-out; cursor: -moz-zoom-out;
+    color: red;
+    -webkit-transition-duration: 0.8s;
+
+}
+
+#chapter-2 #ref {
+
+    color: orange;
+    font-style: italic;
+    cursor: -webkit-zoom-out; cursor: -moz-zoom-out;
+
+}
+
+#chapter-3 #ref {
+
+    color: blue;
+    font-style: italic;
+    cursor: -webkit-zoom-out; cursor: -moz-zoom-out;
+
+}
+
+#chapter-4 #ref {
+
+    color: red;
+    font-style: italic;
+    cursor: -webkit-zoom-out; cursor: -moz-zoom-out;
+
+}
+
+.epilogue 
+
+#chapter-3 a {
+
+    color: blue;
+    font-style: italic;
+    cursor: -webkit-zoom-in; cursor: -moz-zoom-in;
+
+}
+
+
+.hidden {
+
+    display: none;
+
+}
+
+.footnoteContainer {
+
+    cursor: url("http://downloads.totallyfreecursors.com/cursor_files/bluemultiglit.ani"), 
+            url("http://downloads.totallyfreecursors.com/thumbnails/bluemultiglit.gif"), auto;
+}
+
+#chapter-1 sup {
+
+    color: red;
+}
+
+#chapter-2 p sup {
+
+    color: orange;
+}
+
+#chapter-2 a {
+
+    color: orange;
+}
+
+#chapter-3 sup{
+    color: blue;
+    
+}
+
+#chapter-4 sup{
+    color: red;
+    
+}
+
+
+/*Images*/
+
+
+.images img{
+    width: 100%;
+
+}
+
+.images{
+    flex: 0.5;
+    margin-right: 5%;
+}
+
+.image-caption {
+color: white;
+padding-bottom: 5%;
+font-size: 2.2vh;
+font-family: 'space mono';
+
+}
+
+#chapter-1 .image img {
+
+        box-shadow: 6px -1px 14px 1px #ff0000;
+
+}
+#chapter-3 .image img {
+
+        box-shadow: 3px 3px 20px 1px black;
+
+}
+
+
+/*background colors */
+
+@media screen {
+    
+    .chapter.elso{
+
+        background-color: black;
+        color: white;
+        transition: 2s;
+        box-shadow: 0px -9px 17px 17px black;
+
+    }
+
+     .chapter.elso h4{
+
+        transition: 2s;
+        color: #fff;
+        text-shadow: 0px -1px 4px white, 0px -2px 10px yellow, 0px -10px 20px #ff8000, 0px -18px 40px red;
+        letter-spacing: 5px;
+
+    }
+
+    .chapter.elso h3{
+
+            text-shadow: 0px -1px 4px white, 1px -5px 9px yellow, 0px -10px 12px #ff8000, -1px -9px 19px red;
+    letter-spacing: 5px;
+    /*filter: blur(1px);*/
+    
+    }
+
+    .chapter.masodik{
+
+        background: #191654; /* fallback for old browsers */
+        /*background: -webkit-linear-gradient(to left, #43C6AC , #191654); */
+        /*background: linear-gradient(to left, #43C6AC , #191654); */
+        transition: 1s;
+        z-index: -1;
+
+    }
+    .chapter.masodik h4 {
+
+        transition: 1s;
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
+        letter-spacing: 5px;
+
+    }
+
+    .chapter.masodik h3 {
+
+        transition: 1s;
+        color: #fff;
+            text-shadow:  0 0 5px #fff, 0 0 10px #fff, 0px 7px 15px #fff, 0px -3px 13px #ff8000, 0 0 14px #ff8000, 0 0 14px #ff8000, 0 0 5px #ff8000, 0 0 6px #ff2d95;
+    letter-spacing: 1px;
+    font-size: 6.2vh;
+
+    }
+
+    
+
+
+    .chapter.masodik p {
+
+        color: white;
+      
+
+    }
+
+    #chapter-3.harmadik h4{
+        
+        text-shadow: 0px 0px 10px rgba(255,255,255,0.6), 0px 0px 30px rgba(255,255,255,0.4), 0px 0px 50px rgba(255,255,255,0.3), 0px 0px 180px rgba(255,255,255,0.3);
+        letter-spacing: 5px;
+        transition: 1s;
+        color: rgba(255,255,255,0.3);
+        font-size: 8vw;
+        font-family: 'Nothing You Could Do', cursive;
+        text-align: left;
+
+    }
+
+        #chapter-3.harmadik h3{
+        
+        text-shadow: 0px 0px 10px rgba(255,255,255,0.6), 0px 0px 30px rgba(255,255,255,0.4), 0px 0px 50px rgba(255,255,255,0.3), 0px 0px 180px rgba(255,255,255,0.3);
+        letter-spacing: 5px;
+        transition: 1s;
+        color: rgba(255,255,255,0.3);
+        font-size: 4vw;
+        font-family: 'Oswald';
+        text-align: left;
+        padding-bottom: 2%;
+        padding-top: 5%;
+
+    }
+
+    .chapter.harmadik {
+
+        background-color:  #bdc3c7;
+        color: black;
+        transition: 1s;
+        box-shadow: 0px -9px 17px 17px #bdc3c7;
+        position: flex;
+    }
+
+
+
+/*#2c3e50,*/
+
+}
+
+
+
+.panic {
+
+    padding-top: 10%;
+
+}
+
+

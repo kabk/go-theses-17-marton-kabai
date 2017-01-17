@@ -1,15 +1,912 @@
 <!DOCTYPE html>
-            <html>
-                <head>
-                    <meta charset="utf-8">
-                    <title>Rewilding design</title>
-                    <meta name="description" content="This is going to be Marton thesis website" />
-                    <meta property="og:title" content="Rewilding design" />
-                    <meta property="og:image" content="https://github.com/kabk/go-theses-17-marton-kabai-Rewilding-design/blob/master/img.jpg"/>
-                    <meta property="dc:creator" content="Marton Kabai" />
-                    <meta property="twitter:site" content="@martonkabai">
-                </head>
-                <body>
-                    123
-                </body>
-            </html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Intensive spaces of becoming has to be opened</title>
+        <meta name="description" content="This is going to be Marton thesis website">
+        <meta property="og:title" content="Reinventing making">
+        <meta property="og:image" content="https://github.com/kabk/go-theses-17-marton-kabai-Rewilding-design/blob/master/img.jpg">
+        <meta property="dc:creator" content="Marton Kabai">
+        <meta property="twitter:site" content="@martonkabai">
+        <meta name="keywords" content="posthuman, anthropocene, raw, critical, speculative, graphic design">
+        <meta name="author" content="martonkabai">
+
+        <link rel="stylesheet" href="raw.css" media="all" type="text/css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" type="text/javascript"></script>
+	
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jq/jquery-ui.js"></script>
+        
+        <script type="text/javascript" src="js/typed.js"></script>
+		<script type="text/javascript" src="html2print/dist/js/html2print.js"></script>
+
+        <script>
+        $(function(){
+
+			    $('.header').hide();
+        		$('#print').click(function() {
+					H2P.init();
+				});
+
+                $(".title").typed({
+                    strings: [" Intensive^400 spaces^700 of^400 becoming^700 have^200 to^200 be^700 opened^40000"],
+                    typeSpeed: 20,
+                    showCursor: false,
+                    loop: true,
+                });
+
+
+		        // footnotes / references
+
+				$('.footnoteContainer').click(function(){
+					$(this).next().toggleClass('hidden');
+				});
+
+				$('.footnote').click(function(){
+					$(this).toggleClass('hidden');
+				});
+
+				// gather footnoes for print
+
+                $('.chapter').each(function(){
+                	var $footnoteContainers = $(this).find('.footnoteContainer');
+                	var $footnotePrintList = $(this).find('.footnote-list-print');
+
+
+                	$($footnoteContainers).each(function(){
+                        var number = $('<div>').text($(this).find('sup').text()).addClass('footnote-num');
+                        var text = $('<div>').text($(this).next().text()).addClass('footnote-text');
+
+
+                        var has = $footnotePrintList.find('.footnote-num').filter(function() {
+                        	return $(this).text() === number.text()
+                        }).length > 0;
+
+                        if(has){
+                        	return;
+                        }
+
+                        const $footnotePrintListItem = $('<div>').addClass('footnote-item-print');
+                        $footnotePrintListItem.append(number);
+                        $footnotePrintListItem.append(text);
+                        $footnotePrintList.append($footnotePrintListItem);
+                    });
+                });
+
+
+        		// smooth scroll to content
+
+		        $('a[href*=#]').on('click', function(event){     
+    				event.preventDefault();
+    				$('html,body').animate({scrollTop:$(this.hash).offset().top - 100}, 500);
+				});
+
+		        // open contents from side
+
+		      	$('body').click(function(e){
+
+		      		var $target  = $(e.target);
+					if(!$target.parents('.sidenav').length > 0  && $target.attr('class') !== 'title' || e.target.nodeName === "A"){
+						closeNav();
+					}		      		
+		      	});
+
+
+        		// background actions on scroll
+
+                // background actions on scroll
+
+
+
+            var $links = $('#mySidenav').find('a');
+            var $targets = $links.map(function(){
+                return $(
+                    $(this).attr('href')
+                );
+            });
+
+            $(window).scroll(function(){
+                $targets.each(function(){
+                    console.log(this);
+
+                    var top = this[0].getBoundingClientRect().top;
+                    var targetId = this.attr('id');
+
+                    if(top <= 200 && top > 0){
+                        $links.each(function(){
+                            $(this).removeClass('active');
+                            if($(this).attr('href') === '#'+targetId){
+                                console.log('adding class active to ', targetId);
+                                $(this).addClass('active');
+                            }
+                        });
+                    }
+                });
+            });
+
+
+
+	      	$(window).scroll(function(){
+	      		$('.chapter').each(function(){
+	 				
+	 				var chapterID = $(this).attr('id');
+	      			var top = this.getBoundingClientRect().top;
+
+
+
+	      			if(chapterID === 'chapter-1'){
+						if(top <= 200){
+							if(!$(this).hasClass('elso')){
+	      						$(this).addClass('elso');
+	      					}
+						} else {
+	      					if($(this).hasClass('elso')){
+	      						$(this).removeClass('elso');
+	      					}
+						}
+	      			}
+
+
+	      			if(chapterID === 'chapter-2'){
+						if(top <= 200){
+							if(!$(this).hasClass('masodik')){
+	      						$(this).addClass('masodik');
+	      					}
+						} else {
+	      					if($(this).hasClass('masodik')){
+	      						$(this).removeClass('masodik');
+	      					}
+						}		      				
+	      			}
+
+	      			if(chapterID === 'chapter-3'){
+						if(top <= 200){
+							if(!$(this).hasClass('harmadik')){
+	      						$(this).addClass('harmadik');
+	      					}
+						} else {
+	      					if($(this).hasClass('harmadik')){
+	      						$(this).removeClass('harmadik');
+	      					}
+						}		      				
+	      			}
+	      		});
+
+
+	      	});
+
+        });
+
+          
+
+
+			$(window).scroll(function() {
+
+			    if ($(this).scrollTop()<= 900)
+			     {
+			        $('.header').hide();
+			     }
+			    else
+			     {
+			      $('.header').fadeIn();
+			     }
+			 });
+
+
+        // $(function(){
+        //         var list = $('<div>').addClass('footnote-list-print');
+        //         $('#chapter-3 .footnote').each(function(){
+        //                 $('<div>').addClass('footnote-print').text( $(this).text()).appendTo(list);
+        //         });
+
+        //         console.log(list[0].outerHTML);
+        // });
+
+
+		/* Set the width of the side navigation to 250px */
+		function openNav() {
+		    document.getElementById("mySidenav").style.width = "350px";
+		}
+
+		/* Set the width of the side navigation to 0 */
+		function closeNav() {
+		    document.getElementById("mySidenav").style.width = "0";
+		}
+
+        </script>
+    </head>
+
+    <body>
+
+        <div class="h2p-content">
+
+            <div id="head" class="header h2p-exclude" onclick="openNav()">
+                
+                <div id="print">
+
+                    <img src="printicon.jpg">
+
+                </div>
+
+                <h1 id="title" class="title">Intensive spaces of becoming have to be opened</h1>
+            </div>
+
+            <div class="coverpage h2p-break-after">
+                <h3 >intensive spaces of becoming have to be opened</h3>
+
+                <div class="meta">
+
+                    <div class="author">
+                        by <a href="martonkabai.com">M&#225;rton Kabai</a>
+                    </div>
+                    <div class="date">
+                        KABK, Graphic design BA Thesis 2017, The Hague
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="mySidenav" class="sidenav  h2p-break-after">
+                <a href="#c0">Abstract</a>
+                <a href="#c1">Foreword</a>
+                <a href="#c2"><b>Chapter 1 &#8211; Panic</b></a>
+                <a href="#c3" class="subtitle">Becoming Earth</a>
+                <a href="#c4" class="subtitle">Becoming Machine</a>
+                <a href="#c5" class="subtitle">Becoming Species</a>
+                <a href="#c6" class="subtitle">Becoming Aware</a>
+                <a href="#c7"><b>Chapter 2 &#8211; Excitement</b></a>
+
+                <a href="#c8" class="subtitle">Design as aspect change</a>
+                <a href="#c9" class="subtitle">Design as demystification</a>
+                <a href="#c10" class="subtitle">Design as intersectionality</a>
+                <a href="#c11" class="subtitle">Design as possibility</a>
+
+                <a href="#c12"><b>Chapter 3 &#8211; Panic &amp; Excitement</b></a>
+
+                <a href="#c13" class="subtitle">Design becoming voice</a>
+                <a href="#c14" class="subtitle">Design becoming hyperobject</a>
+                <a href="#c15" class="subtitle">Design becoming undoing</a>
+                <a href="#c16" class="subtitle">Design becoming investigation</a>
+                <a href="#c17" class="subtitle">Design becoming play</a>
+                <a href="#c18" class="subtitle">Design becoming cure</a>
+                <a href="#c19" class="subtitle">Design becoming provocation</a>
+                <a href="#c20" class="subtitle">Design becoming darkness</a>
+                <a href="#c21" class="subtitle">Design becoming allyship</a>
+                <a href="#c22" >Epilogue</a>
+                <a href="#c23" >Bibliography</a>
+                <a href="#c24" >Colophon</a>
+
+            </div>
+
+            
+            <div class="chapter h2p-break-after" id="chapter-0">
+                <div class="abstract h2p-break-after">
+                    <a class="footnoteContainer"><h3 id="c0" >Abstract &#9660;</h3></a><span class="hidden footnote unclick" class="text">
+
+                            <p >In my thesis, I am trying to elaborate on the question: What are the consequences of the posthuman condition in graphic design. I am attempt to argue in favor of the resisting and reflecting ability that (graphic) design possess in the age staggering disconnection between the irreversible environmental crisis and the increasing expansion of techno-capitalistic ideology. The human race become a destructive geological force - as the Anthropocene refers - altering the biosphere, changing climate, driving species to extinction caused by human activity. Anxiety, apocalypse, panic. Information technologies, smart algorithms facilitate as well as surveil our everyday life. Excitement, optimism, innovation. The overwhelming dominance of the techno-capitalist ideology conceals the terrific waste and violence that the production requires. Nature becomes the victim of the egoistic agenda of capitalist production.</p>
+
+                            <p>This problematic situation is the starting point of the posthuman theory, that tries to redefine, relocate and reinvent what it means to be a human. The divide between nature and culture, body and mind is increasing, the human exceptionalism has to be exceeded. Time to think beyond the centrality of the man. Through the posthuman, I attempt to derive the necessity of a post-anthropocentric turn in which (graphic) design - whatever it means - might have a major role, since it has a direct link to social, economic and political discourse. It has a capability of transferring critical concerns by exploiting current technological facilities and theories. In search of the position of the posthuman designer that promotes resistance, questions the status quo, reveals truth, provokes awareness, reinvent making, I argue that design is a possibility to imagine, to speculate, to affect and to change.</p>
+
+                            <p>I argue how design makes all that possible by demonstrating concepts, such as 'defamiliarisation' by Shklovsky or the 'aspect change' by Wittgenstein. I emphasise the importance of intersectionality as a key to look ourselves relational. I point out the fundamental necessity to reinvent design practice as self-critical and irrespective. I trying toI conclude with the necessity of finding non-designer peers to ally with from other fields of knowledge. We have to connect in the age of disconnection.
+                            </p>
+
+                            </span>
+
+                    </div>
+                                                                    <!-- INTRODUCTION -->
+
+                    <div class="foreword">
+                        <h3 id="c1">
+
+                            Foreword
+                        </h3>
+                        <p>
+                            I have an inherent admiration towards the notion of wilderness. It recalls an infinite organic proliferating space, that I have never been and never will be that space. It inhabits unexpectedness and governed by instincts. Self-organising bodies are living in bloody, timeless balance. The multiplicity of proportions and desires generate differences that sustain life. Various beings and materials are exposed to the virtue of violent forces. Wilderness is beyond human perception, wilderness is anti-anthropocentric, because wilderness is immeasurable. Wilderness is the anti-thesis of design. A proof of itself, imperfect, infinite event, brutal freedom. The landscape of wilderness is unpredictable, but its multiple reality makes it endless and equal in terms of possibilities. However it was our first home, that nurtured us. Designers and artist of all kind must reach out to the wilderness as the symbol of inherent possibility to free and rewild ourselves in order to reinvent design.
+                        </p>
+                    </div>
+            </div>
+
+
+
+                                                                    <!-- CHAPTER 1 -->
+
+
+
+            <div class="chapter h2p-break-after" id="chapter-1">
+
+                        <h4 id="c2" class="panic">
+                            Chapter 1 &#8211; <br> Panic
+                        </h4>
+
+                        <div class="chapter-content">
+
+                            <div class="text">
+
+
+                            <h3 id="c3">
+                                Becoming Earth
+                            </h3>
+                            <p class="quote">
+                                <i>&#8220;as a creature living in a rushing endgame of civilisation i am intimately acquatinted with the landscape of loss carrying the daily weight of despair&#8221;</i> Derrick Jensen
+                            </p>
+                            <p>
+                                The past thousands years of human ideologies and its activities have irreversibly altered the preexisting natural processes of the Earth system.<a class="footnoteContainer" ><sup>1</sup></a><span class="hidden footnote unclick" id="ref">Erle C. Ellis, &#8220;Earth Science in the Anthropocene: New Epoch, New Paradigm, New Responsibilities, Web&#8221;, EOS, December 8, 2008. p.473</span> Man become a destructive, geological force that is being referred as the Anthropocene &#8211; the new geological epoch.<a class="footnoteContainer" ><sup>2</sup></a><span class="hidden footnote unclick" id="ref">&nbsp;&#8220;Since geologists are beginning to use the term &#8220;anthropocene&#8221; to designate the era of Earth&#8217;s history that follows the Holocene, this will be a convenient term to use from here on to sum up the meaning of an era that extends from the scientific and industrial revolutions to the present day&#8221; Bruno Latour</span> Matthew Coolidge from the Center for Land Use Interpretation (CLUI) believes that nature as it used to be understood doesn't exist: &#8220;every molecule on the Earth has been affected by humans, if we try to put things back that would be reconstruction.&#8221;<a class="footnoteContainer" ><sup>3</sup></a><span class="hidden footnote unclick" id="ref">The Geologic imagination: Every molecule on the Surface of the Earth has been affected by humans, Interview with Matthew Coolidge, Amsterdam, Sonic Act Press (2015)</span> James Lovelock believed that the Earth - Gaia - is a living, breathing thing, where organisms are interconnected with its inorganic surroundings, which is deeply affects the stability of the global planetary balance, because &#8220;our human dependence on nature cannot be understood without a deep ecological study of the interconnectedness of life&#8221;.<a class="footnoteContainer" style="color:red;"><sup>4</sup></a><span class="hidden footnote unclick" id="ref"><a href="https://philosophynow.org/issues/88/Three_Challenges_For_Environmental_Philosophy" style="color:red" target="blank">Jim Moran, &#8220;Three Challenges For Environmental Philosophy&#8221;,consulted on October 3, 2016</a></span> The Anthropocene refers to that radical mutation and the long-term collapse of the cosmic, evolutionary ecosystem that nurture and holds life itself.
+                            </p>
+                            <p>
+                                Derric Jensen, environmental activist and writer does not agree with the chosen name, Anthropocene: &#8220;All of this is crucial, because perpetrators of atrocity so often attempt to convince themselves and everyone else that what they&#8217;re doing is natural or right. The word &#8220;Anthropocene&#8221; attempts to naturalize the murder of the planet by pretending the problem is &#8220;man,&#8221; and not a specific type of man connected to this particular culture.&#8221;<a class="footnoteContainer" ><sup>5</sup></a><span class="hidden footnote unclick" id="ref">&nbsp;, Derrick (2006), Endgame: The problem of civilisation. New York: Seven Stories Press</span> Susan M. Rustick, in her essay Held Hostage by the Anthropocene, has a similar view.&#8220;I argue that the proposed name &#8220;Anthropocene&#8221; is comparable to the experience of Narcissus, peering at his own human reflection in the pond. The pond itself does not exist for Narcissus; the trees and sky above the pond do not exist. All that exists is the gazer enrapt by his own image.&#8221;<a class="footnoteContainer" ><sup>6</sup></a><span class="hidden footnote unclick" id="ref">&nbsp; T&#248;nnessen, Kristin Armstrong Oma, Silver Rattasepp, (2016), Thinking About Animals in the Age of the Anthropocene. Lanham, Maryland: Lexington Books</span> As dominant, responsible species we can no longer pretend to be the only players in front of the background, called nature. Due to wrong political and economic decisions, and the relentless resource exploitation has led to land degradation, water and air pollution, massive species extinction, sea-level and temperature rise causing fatal environmental and social consequences. Pope Francis, published an official encyclical letter, <i>Laudato Si&#8217; of the Holy Father Francis on Care for our Common Home,</i>  where he is expressing his anxiety towards climate change with strong critics on the unregulated capitalist production: &#8220;The violence present in our hearts, wounded by sin, is also reflected in the symptoms of sickness evident in the soil, in the water, in the air and in all forms of life.&#8221;<a class="footnoteContainer" style="color:red;"><sup>7</sup></a><span class="hidden footnote unclick" id="ref"><a href="http://w2.vatican.va/content/francesco/en/encyclicals/documents/papa-francesco_20150524_enciclica-laudato-si.pdf" style="color:red" target="blank">Francis, Pope, (2015), “The Holy See”, published on w2.vatican.va 24 May 2015</a></span> He continues, by reminding us, that &#8220;our very bodies are made up of her (Earth) elements.&#8221; It&#8217;s quite surprising turn, that the Holy Father Francis makes an anti-capitalistic statement, by this he empowering the global left.
+                            </p>
+                            <p>“We—all of us on Terra—live in disturbing times, mixed-up times, troubling and turbid times.”<a class="footnoteContainer" ><sup>8</sup></a><span class="hidden footnote unclick" id="ref">Haraway, Donna, (2016),  Staying with the Trouble: Making Kin in the Chthulucene (Experimental Futures). Durham: Duke University Press Books</span> We can call it apocalypse, catastrophe, disaster or tragedy, that is - after all -  leads to pointless deaths, extinction and then oblivion. I am being careful using these words, as nowadays they seem over and misused by environmental scientists, green activists or marketing strategists. What these terms eventually means, we don’t know. How can we relate with this anti-anthropocentric state of mind? Sadly, due to economic interests, it fails to become a political issue. As Naomi Klein’s book, <i>This changes everything</i>, stresses “It is a civilizational wake-up call. A powerful message—spoken in the language of fires, floods, droughts, and extinctions—telling us that we need an entirely new economic model and a new way of sharing this planet.”<a class="footnoteContainer" ><sup>9</sup></a><span class="hidden footnote unclick" id="ref">Klein, Naomi, (2015), This changes everything. New York: Simon &amp; Schuster</span>  We have enormous amount of scientific data, statistics and prediction that precisely giving evidences of the measure of human impact, however it only provokes impotent political reactions and fails to provoke voluntary social transformation. Adam Curtis, in his film <i>HyperNormalisation</i> draws a picture on the corporate control over global politics and the disappearance of the importance of truth, where everyone knows that the current economic system - capitalism - is sick and infeasible however most people cannot dare to imagine and resist for an alternative status quo. Unfortunately, “for most people in the world, it is probably easier to imagine a global ecological catastrophe caused by human activity than the end of the capitalist system”.<a class="footnoteContainer" ><sup>10</sup></a><span class="hidden footnote unclick" id="ref">Rasinski, Lotar, (2016) “A Picture Held Us Captive...” Marx, Wittgenstein and the ‘Paradox of Ideology’</span> Everything that we have taken granted, suddenly becomes the subject of change. The problem is none other, but ourselves. We have been collectively designing our own apocalypse.
+                            </p>
+
+
+                            <h3 class="section"id="c4">
+                                Becoming Machine
+                            </h3>
+
+                            <p class="quote">
+                                <i>“Everywhere we remain unfree and chained to technology, whether we passionately affirm or deny it.”</i> <br>Martin Heidegger
+                            </p>
+
+                            <p>
+                                It seems that we can’t get away recognising that we need a radical reconfiguration of everything that we – as civilisation – have become, however the opposite is happening as the status quo is being reinforced by the prevailing techno-capitalistic structure. The ever-increasing institutional dependency on automatization and smart algorithms is becoming standards. Without computational systems, there is no stock-exchange, no defence system, no university, no social media. Our lives have intimately fused together with smart devices and information technology, that makes us fundamentally addicted dependent. The google search is so much part of our everyday life, that is affecting how we learn, read, write or remember. If we look at the “four horsemen of the posthuman apocalypse: nanotechnology, biotechnology, information technology and cognitive science”<a class="footnoteContainer" ><sup>11</sup></a><span class="hidden footnote unclick" id="ref">Braidotti, Rosi. (2014), The Posthuman. Cambridge: Polity Press</span>, it foreshadows a technologically mediated future scenario as tech-solutionism.
+
+                            </p>
+
+                            <p>
+                                The transhumanism movement finds the human through the possibility of bio-technological evolution. It considers that the human body is obsolete, and can and should be enhanced, alter and modify in order to make a better fit into to our technologized reality. It thinks the opposite way, instead of questioning the concept of techno-capitalism, it questions the human in terms of potentiality, confirming the actual power relations. Transhumanist thinks optimistically and rationally, surrendering under intelligent technology, open society and self-transformation. As if the human body there would be no better than a machine, but the human mind is exceptional and transcendent. Consequently, bio-technological corporations become the definition of future as a kind of religious figure, providing and maintaining the transhuman image, which is substantially the commercial version of modern humanity. It profits and invests in the informational code of all lives. The informational code of life becomes the ultimate commodity, where the code possesses more privilege than its material manifestation. For instance, Monsanto owns the informational code of all grains, possessing new level of control over production and productivity. Life becoming mere extract, code, data, commodity. “It is no longer about designing the things in the environment around us but designing life itself from microorganisms to humans, yet as designers we devote very little time to reflecting on what this means.”<a class="footnoteContainer" ><sup>12</sup></a><span class="hidden footnote unclick" id="ref">Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span>
+
+                            </p>
+
+                            <p>
+                                The posthuman  is - as opposed to the transhuman - very sceptical and critical towards technology, and its capitalist ideology. It finds epistemologically unacceptable to promote commodifying the informational code of any life. It would argue that the “most important question to ask about modern societies is therefore what understanding of human life is embodied in the prevailing technical arrangements.” <a class="footnoteContainer" ><sup>13</sup></a><span class="hidden footnote unclick" id="ref">Feenberg, Andrew. Transforming Technology. Oxford University Press, 2002. Print.</span>
+
+                                The posthuman rather sees problematic the concept of technology, since the progress of human domain ultimately conceals the terrific decay, accumulating waste and violence, that continues separate and segregate humanity.
+
+                            </p>
+
+                            <h3 class="section"id="c5">
+                                Becoming Species
+                            </h3>
+
+                            <p class="quote">
+                                <i>“This term (species) is the indispensable starting point for all of our theories.”</i>&nbsp;Flusser Villém
+                            </p>
+
+                            <p>
+                                “We are a part of that nature that we seek to understand”.<a class="footnoteContainer" ><sup>14
+                            </sup></a><span class="hidden footnote unclick" id="ref">Donmez, Basak Agın, “Recent Approaches in the Posthuman Turn” Relations. Beyond Anthropocentris, June 2016, p.106-115</span> Rosi Braidotti stresses that Darwin and the concept of human as a species is missing from our philosophical terminology. We have to try think beyond the centrality of the man, the limitation of anthropomorphism and the historical significance of humanism. We must take a distance from our species, our history, to rethink and erase ourselves from a different light. Braidotti refers to it as the post-anthropocentric turn, that is eventually anti-anthropocentric. Humanism has been long time part of a philosophical discourse. In the Renaissance, the Vitruvian Man’ s message by Leonardo da Vinci express a new image, that attempted to disconnect from the centrality of god into the centrality of the man. The drawing was a symbol, instead of god, ‘the man is the measure of all things’. But it was just the very beginning. The revolutionary humanistic turn happened in the age of Enlightenment, where Rene Descartes, with the motto of - I think, therefore I am - have begun a dualistic version of humanism.
+
+                            </p>
+
+                            <p>
+
+                            By now in the dawn of the 21 century, the promises of the humanistic exceptionalism suggested have failed. Humanity has never been one. The human that classical humanism refers to is the white, heterosexual, taxpayer, male citizen, that excludes as much as its includes. The essentialism – the emphasis of the mind – went too far and has resulted the Anthropocene. It has produced extreme disconnection between body and mind, nature and culture as well as a “gap between information and materiality, discourse and matter, and thus the human and the nonhuman”.<a class="footnoteContainer" ><sup>15</sup></a><span class="hidden footnote unclick" id="ref">Donmez, Basak Agın, “Recent Approaches in the Posthuman Turn” Relations. Beyond Anthropocentris, June 2016, p.106-115</span> Braidotti claims that, the dualism is what the posthuman turn attempts to exceed with the philosophy of Foucault, who defined the matter as vital and self-organizing. Braidotti has an anti-humanist background, that is not to be misunderstood with misanthropy, it is an explicit rejection of transcendental humanism.<a class="footnoteContainer" ><sup>16</sup></a><span class="hidden footnote unclick" id="ref">Transcendental humanism in philosophy considers what is proper treatment of humans outside of nature and decides they have inherent rights, simply from being human. It is also positive that man is capable of transcending the material self and can also free himself from surrounding influences. An example of this is when he thinks about himself and his character traits as if two different people.</span> She refuse the dualistic, hierarchical theories altogether, “which disavow the ecological dimension”<a class="footnoteContainer" ><sup>17</sup></a><span class="hidden footnote unclick" id="ref">Braidotti, Rosi. (2014), The Posthuman. Cambridge: Polity Press</span> and instead, she offers a Spinozist, holistic, relational approach. “Monism, the unity of all living matter (that is) the building blocks for a posthuman theory of subjectivity that does not rely on classical Humanism and carefully avoids anthropocentrism.” <a class="footnoteContainer" ><sup>18</sup></a><span class="hidden footnote unclick" id="ref">Braidotti, Rosi. (2014), The Posthuman. Cambridge: Polity Press</span> The task here, is to peel off the privileges of the human subject and to diminish any transcendental reason that can maintain the superior position of the man over anybody or anything. If we consider it as a design problem, we immediately realise that all of these terms, outlooks and ideologies are constructed and designed. But concepts that lasts too long are harder to abolish, change or question because its already defined the rules in which we are living. What Braidotti suggests, is as simple as to admit that we should be in control, not being controlled, especially in a design context. As Timothy Morton, states: “The Anthropocene is an anti-anthropocentric concept because it enables us to think the human species not as an ontologically given thing I can point to, but as a hyperobject that is real yet inaccessible.”<a class="footnoteContainer" ><sup>19</sup></a><span class="hidden footnote unclick" id="ref">Morton, Timothy. “Realist Magic Objects, Ontology, CausalityTimothy Morton.” (2013): 1–234. Print.</span>
+
+
+                            </p>
+
+                            <h3 class="section"id="c6">
+                                Becoming Aware
+                            </h3>
+
+                            <p class="quote">
+                                <i>“With this programme as with all programmes, you receive images and meanings which are arranged. I hope you will consider what I arrange but please remain skeptical of it.”</i>&nbsp;John Berger
+                            </p>
+
+                            <p>
+                                “Can we imagine today a world without capitalist relations of production?”<a class="footnoteContainer" ><sup>20</sup></a><span class="hidden footnote unclick" id="ref">Rasinski, Lotar. “A Picture Held Us Captive...” Marx, Wittgenstein and the ‘Paradox of Ideology’. 2016. Print.</span> Capitalism has drawn from areas of human knowledge, like science, psychology, perception, engineering, industry...etc in order to further its powerful economic system. Considering its connection with design to craft visual messages with fixed ideology (propaganda) was always an important addition to support this imperative. The history of graphic design is inextricably linked to that commerce and consumer production. But if design has a history linked to the generation of need, consumption and desire, it also linked to the generation of knowledge and information. At the level of a service industry, where most design have taken place, it exists only as form-giver not content provider, since forms are the real carriers of ideology. That stage has been long passed as Daniel van der Velden proposed, “today, an ‘important graphic design’ is one generated by the designer himself, a commentary in the margins of visual culture.”<a class="footnoteContainer" ><sup>21</sup></a><span class="hidden footnote unclick" id="ref">Daniel van der Velden,  “Research & Destroya Plea for Design as Research” Metropolis M, issue 2 2006</span>, defining a new trend or approach. Marx outlined ideology as a "false consciousness" of a ruling class in a society which falsely presents their ideas as if they were universal truth, a set of ideas used as a political tool to achieve hidden goals and interests by distorting social and political realities. That confirms that disconnection between critical and affirmative design that I am seeking to analyse. In fact, the history of graphic design is the history of form not the content, the problem however is that most commercial enterprises will not be interested in forms that reveal the true relations of the dominant economic and political systems, that could undermine its corporate status. Braidotti argues that there is a “tension between the urgency of finding new and alternative modes of political, ethical and social agency for our technologically mediated world and the inactivity of established mental habits on the other.” <a class="footnoteContainer" ><sup>22</sup></a><span class="hidden footnote unclick" id="ref">Braidotti, Rosi. (2014), The Posthuman. Cambridge: Polity Press</span> This I understood as a tension between the only available agency that runs design production, where hypnosis takes place, and the other, selfanalogous, holistic, relational design practice outside of corporate interests that is active, dynamic and self-critical. “The post-anthropocentric turn, linked to the compounded impacts of globalization and of technology-driven forms of mediation, strikes the human at his/her heart and shifts the parameters that used to define anthropos.”<a class="footnoteContainer" ><sup>23</sup></a><span class="hidden footnote unclick" id="ref">Braidotti, Rosi. (2014), The Posthuman. Cambridge: Polity Press</span>
+
+                            </p>
+
+                            <p>The crisis of dualism is the essence to open up the posthuman condition, that I would like to integrate and fuse into the possibility and potentiality of design. Emphasising how important and crucial is to recognise the capability of design in the age of despair, confusion and extinction. The posthuman turn that Rosi Braidotti offers “has come to denote a horizontal, rather than a hierarchical, alignment of the human and the nonhuman” and attempts to place this isolation between the body and mind, nature and culture into focus, as well as the disconnection between form and content, value and truth, society and politics. It is the age of ambivalence: panic and at the same time excitement. Design operates in two ways: form and content. Form is the materialistic, physical embodiment through various techniques and technologies.  Concept on the other hand is the virtual, the philosophical through, political or social interaction. Of course, these qualities intervene and mixed within design production. I am curious as to what extent the posthuman condition affects design, the role of a designer and what are the consequences of it?  What is to be offered in terms of possibilities of acting politically through design and how does one become a posthuman designer?</p>
+
+    <!-- data-scroll-speed="2" -->
+
+                        </div>
+
+                         <div class="images" >
+                            <div class="image">
+
+                                <img src="img/chapter1/1-1.jpg">
+                                <div class="image-caption">
+                                    <p>A picture taken on 4 January 2014 shows Syrians walking along a severely damaged road in the northeastern city of Deir Ezzor, Syria</p>
+                                </div>
+                                <img src="img/chapter1/1-2.jpg">
+                                <div class="image-caption">
+                                    <p>Tower blocks in Hong Kong. More than half of all the concrete ever used was produced in the past 20 years. Photograph: Bobby Yip/Reuters</p>
+                                </div>
+                                <img src="img/chapter1/1-3.png">
+                                <div class="image-caption">
+                                    <p>Cambodia lost around 1.59 million hectares of tree cover between 2001 and 2014 – much of it for plantation agriculture like the rubber plantations. Only one small area of intact forest landscape remains in the country, but half of it was degraded between 2000 and 2013. The area circled in the inset shows the area highlighted by NASA’s imagery.</p>
+                                </div>
+                                <img src="img/chapter1/1-0.jpg">
+                                <div class="image-caption">
+                                    <p>The first photo of Earth from the moon was taken on August 23, 1966. (NASA)</p>
+                                </div>
+                                <img src="img/chapter1/1-5.jpg">
+                                <div class="image-caption">
+                                    <p>A factory farm in Missouri, USA. Factory farms are 70% contributing to land, air and water pollution. Photograph: Daniel Pepper/Getty Images</p>
+                                </div>
+                                <img src="img/chapter1/1-6.jpg">
+                                <div class="image-caption">
+                                    <p>Every year we dump a massive 2.12 billion tons of waste. If all this waste was put on trucks they would go around the world 24 times. theworldcounts.com</p>
+                                </div>
+                                <img src="img/chapter1/1-7.png">
+                                <div class="image-caption">
+                                    <p>The first six months of 2016 were the warmest six-month period in NASA's modern temperature record, which dates to 1880. Credits: NASA/Goddard Institute for Space Studies. </p>
+                                </div>
+
+
+
+                                <img src="img/chapter1/1-12.jpg">
+                                <div class="image-caption">
+                                        HyperNormalisation is a 2016 BBC documentary by British filmmaker Adam Curtis. In the film, Curtis argues that since the 1970s, governments, financiers, and technological utopians have given up on the complex "real world" and built a simple "fake world" that is run by corporations and kept stable by politicians.
+                                </div>
+
+                                <img src="img/chapter1/1-14.jpg">
+                                <div class="image-caption">
+                                    <p>Rhino poaching is currently at a crisis point. By the end of 2015, the number of African rhinos killed by poachers had increased for the sixth year in a row with at least 1,338 rhinos killed by poachers across Africa in 2015. These statistics are compiled by by International Union for Conservation of Nature (IUCN) Species Survival Commission’s African Rhino Specialist Group (AfRSG).</p>
+                                </div>
+                                <img src="img/chapter1/1-15.jpg">
+                                <div class="image-caption">
+                                    <p>Pope Francis not holding back taking political role. He opposes consumerism, irresponsible development, and supports taking action on climate change, a focus of his papacy with the promulgation of Laudato si'. In international diplomacy, he helped to restore full diplomatic relations between the U.S. and Cuba.</p>
+                                </div>
+                                <img src="img/chapter1/1-16.jpg">
+                                <div class="image-caption">
+                                    <p>High level waste being stored in underground repository.That is going to be remain as an evidence after humanity.</p>
+                                </div>
+
+                                <img src="img/chapter1/2-3.jpg">
+                                <div class="image-caption">
+                                    <p>Monsanto is not only the world’s largest producer of GMO seeds but also has a murderous past through the production of toxic chemicals such as dioxin (Orange) for spraying in Vietnam, PCBs,  and more, which are said to have killed millions of people.</p>
+                                </div>
+
+
+                                <img src="img/chapter1/2-4.jpg">
+                                <div class="image-caption">
+                                        Data-centers are the evidences that the internet is territorial.
+                                </div>
+                                <img src="img/chapter1/2-5.jpg">
+                                <div class="image-caption">
+                                    <p>Dolly was a female domestic sheep, and the first mammal cloned from an adult somatic cell, using the process of nuclear transfer.</p>
+                                </div>
+
+                                <img src="img/chapter1/2-8.png">
+                                <div class="image-caption">
+                                    <p>Google search becoming a necessety in our everyday life, changing the way we deal with knowledge.</p>
+                                </div>
+                                <img src="img/chapter1/3-1.png">
+                                <div class="image-caption">
+                                    <p>We have to think about it.</p>
+                                </div>
+                                <img src="img/chapter1/3-2.jpg">
+                                <div class="image-caption">
+                                    <p>Leonardo da Vinci,(c.1487) Vitruvian Man, Gallerie dell’Accademia in Venice, Italy, 34.4 × 25.5 cm</p>
+                                </div>
+
+                                <img src="img/chapter1/3-4.jpg">
+                                <div class="image-caption">
+                                    <p>Michelangelo's David, 1501-1504, Galleria dell'Accademia (Florence)</p>
+                                </div>
+                                <img src="img/chapter1/3-7.jpg">
+                                <div class="image-caption">
+                                    <p>Rodin's sculpture, The Thinker, represents the Cartesian, dualistic philosophy. </p>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                   <div class="footnote-list-print">
+
+                   </div>
+            </div>
+
+
+
+
+                                                                            <!-- CHAPTER 2 -->
+
+
+
+
+
+                 <div class="chapter h2p-break-after" id="chapter-2">
+                         <h4 id="c7" class="panic chapter-header" >
+                             Chapter <sup>2</sup> &#8211; <br> Excitement
+                         </h4>
+
+                        <div class="chapter-content-2">
+                            <div class="text">
+                            <h3 id="c8">
+                                Design as aspect change
+                            </h3>
+                            <p class="quote">
+                                <i>“We shape our building, thereafter they shape us.” </i> Churchill
+                            </p>
+                            <p>Ideology and design have always been close to each other. Design is itself an ideology and a tool that makes ideology possible, as it can materialise and organise ideas. We know some cases, where design has led to ideology, like the 20th century design/art movements (Dadaism, Surrealism, Suprematism) which has made possible the ability to see and to live in alternative realities and imaginations. But their reason was to deny the ruling horrific political ideologies of their environment. On the other hand, where ideology becomes art and design, is the manifestation of propaganda. The idea of multiplicity, instead of the rigid belief in one view as some ideologies and much propaganda tends to determine. Ideologies in most cases designed by the few for the masses to get control, however it’s not impossible to transform its facility against the powerful. We have just encountered a similar duality, – the multiplicity contra the one. How can we defend ourselves or recognise ideologies? Images can be crafted to mislead, control the behaviour of the viewer, but the same image can be shown in a different light that could undermine the previous suggestion. Design is the possibility to choose and to recognise the responsibility of the message. Wittgenstein’s term, “aspect change” is explains the fragility of human perception and defines fundamental multiplicity over monotheism. He explains it by using Jastrow’s picture of <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Kaninchen_und_Ente.png/800px-Kaninchen_und_Ente.png" target="blank">duck-rabbit</a> duck-rabbit or rabbit-duck head. </p>
+
+                                <p>The reason why this drawing is symbolic, is because when first we see it, we see only one animal head – either the rabbit or the duck – but If somebody show us a different arrangement of connections between the elements on the picture, we might see the other head as well. This moment Wittgenstein calls an “aspect dawning” – the phenomenon of suddenly seeing something else at the same picture. Suddenly we experience multiple meaning of the same image. Rasinski explains very clearly why this is important in our case. “I want to suggest here that the change of aspect, aspect dawning and perspicuous representation are possible means of defending ourselves against ideology, against the terror of violent design. Therefore, we have to seek for providing new, alternative “maps” for the familiar problems or paradigms. Such “maps” have a capacity to liberate us from pictures that “hold us captive” by opening up a space of freedom, that is, by pointing at possibilities of thinking, acting or governing otherwise. “<a class="footnoteContainer" ><sup>24</sup></a><span class="hidden footnote unclick" id="ref">Rasinski, Lotar. “A Picture Held Us Captive...” Marx, Wittgenstein and the ‘Paradox of Ideology’. 2016. Print.</span> What Rasinski calls “maps” are the other possibilities that designers can and must do to create new vision, new hope, new belief. We have to “recognize other possibilities. encouraging multiplicity”<a class="footnoteContainer" ><sup>25</sup></a><span class="hidden footnote unclick" id="ref">Rasinski, Lotar. “A Picture Held Us Captive...” Marx, Wittgenstein and the ‘Paradox of Ideology’. 2016. Print.</span> What the posthuman designer could offer is the rearrangement of elements that was already in the picture, which simultaneously allows us to see something in a different light.
+                            </p>
+
+                            <h3 id="c9">
+                                Design as demystification
+
+                            </h3>
+                            <p class="quote">
+                                <i>“as perception becomes habitual, it becomes automatic”</i> Shklovsky, Viktor
+                            </p>
+                            <p>
+                                Viktor Shklovsky has a similar approach. In his essay, Art as technique, talking about art as “defamiliarisation”. He argues, that art and design is technique, that able to change ordinary perceptions. When we get used to something it can easily outpace us and become autocratic.  When a product, a colour, a shape, a path or a way of thought becomes familiar and stays unchanged, we tend to take it granted, fixed and absolute. “Habitualization devours work, clothes, furniture, one's wife, and the fear of war. If the whole complex lives of many people go on unconsciously, then such lives are as if they had never been.”<a class="footnoteContainer" ><sup>26</sup></a><span class="hidden footnote unclick" id="ref">Shklovsky, Viktor. “Art as Technique.”, 1912: p.1–11</span> Thus, based on Shklovsky idea, art and design is capable of demystify seemingly complicated social and political issues. Therefore, we can see a benefitting relation between design and critical thinking. Shklovsky is basically connect the power of “aspect change” as a technic of art and design. “Art exists that one may recover the sensation of life; it exists to make one feel things, to make the stone stony. The purpose of art is to impart the sensation of things as they are perceived and not as they are known.” <a class="footnoteContainer" ><sup>27</sup></a><span class="hidden footnote unclick" id="ref">Shklovsky, Viktor. “Art as Technique.”, 1912: p.1–11</span> So the purpose of art is to make objects, feelings or thoughts unfamiliar, to make forms out of its contents, to increase the difficulty and length of perception in order to shaken the viewer out of his social role. Shklovsky reinforcing the function of criticality in design and art, in favour of a new vision over the old.  Design can be also seen as a funnel. What I mean by this is that design can take viewers by its familiar form, like a book or a website and in a way, trap them into being confronted an opinion, confusing their perception or acting. But also, that from the moment this becomes clear, there’s almost no way out. Design make us shiver.
+                            </p>
+
+                            <h3 id="c10">
+                                Design as intersectionality
+
+                            </h3>
+                            <p class="quote">
+                                <i>“In a real sense all life is inter-related. All men are caught in an inescapable network of mutuality, tied in a single garment of destiny. Whatever affects one directly, affects all indirectly.” </i> Marin Luther King Jr.
+                            </p>
+                            <p>
+                            Problems never stands alone, always in contrast, intersecting with each other to become much more challenging to see through. There is no design without technology, psychology or ethics. As Braidotti emphasises a monistic, plural, inter-relational condition, we have to also acknowledge that design is first and foremost a practice, a translational tool that requires peers, theorists and experts to understand its intersectional quality. Kimberlé Crenshaw coined the term “intersectionality” as a way of understanding and speaking about complex interactions between different forms of oppression. How can we talk about racism, without mentioning misogyny or xenophobia? How can we talk about the beauty of nature without the global consequences of advanced capitalism? Intersectionality is a conceptual tool with which issues, problems, roles are in continuous interaction with each other. Design is also a vector, intersecting a multiplicity of many forces – political, economical, social, cultural, experiential, institutional. As a force “it participates to the construction of the future”.<a class="footnoteContainer" ><sup>28</sup></a><span class="hidden footnote unclick" id="ref">Denker, Kai. “CfP: Deleuze and Design (Deleuze Connections Series) - Review.” (2012): 1–3. Print.</span> It also refers back to Rasinski’s “map”, that is not fixed and absolute, but dynamic and can and must be refreshed, redrawn, remade over time. “Intersectionality teaches us that politics cannot be only understood through rigid power categories but through a matrix of forces and relations that produce different effects in different sites and moments, with different bodies and positions.“<a class="footnoteContainer" ><sup>29</sup></a><span class="hidden footnote unclick" id="ref"><a href="Article at http://www.decolonisingdesign.com/announcements/2016/call-for-papers-intersectional-perspectives-on-design-politics-and-power-a-two-day-symposium/"></a>Article at http://www.decolonisingdesign.com</span></p>
+
+                            <h3 id="c11">
+                                Design as possibility
+
+                            </h3>
+                            <p class="quote">
+                                <i>“Intensive spaces of becoming have to be opened and, more importantly, to be kept open.” </i> Rosi Braidotti
+                            </p>
+
+                            <p>
+                            I already concluded that everything slowly continues to transition through intersectional paths and the role of a designer is not an exception. Concluding that in design industry there is limited space for imaginative design in an industry biased by capitalistic ideology, however that’s pays off well in terms of €, £, $. Some designers have recognised its confusing, ambivalent context and started expanding borders, both of form and concept. As Van Toorn expresses, “not questioning social responsibilities (of the designer), implies that you surrender to that sector of society, that because it possesses all our means of survival, manoeuvres design in the role of entrepreneurial aesthetics”. In 1964, the First Thing First manifesto published by Ken Garland together with 21 colleague to “reject the “high pitched scream of consumer selling” and omnipotent lure of the advertising industry in favour of what was defined as socially useful graphic design work”<a class="footnoteContainer" ><sup>30</sup></a><span class="hidden footnote unclick" id="ref">Howard, Andrew. “There Is Such a Thing as Society*.” (2016): 1–12. Print.</span> . It was a brave attack against the standardisation of advertising industry, but what makes it more interesting is that it has been republished and revised by Adbusters as the First Things First Manifesto 2000. “The aim was to stimulate discussion in all areas of visual communication – in education, in practice, in the organisations that represent design’s aspirations and aims – as well as outside design.”<a class="footnoteContainer" ><sup>31</sup></a><span class="hidden footnote unclick" id="ref">Barnbrook, Jonathan et al. “First Things First Manifesto 2000.” (2016): 1–5. Print.</span> </p>
+
+                            <p>
+                            In 2006, Daniel van der Velden goes a bit further, with his text, Research and destroy. He realises that the role of a designer has to change, redefined, reinvent in accordance to the changing times. He argues, that graphic design is more than surface production, more than a service, “In recent years, the graphic designer has shown himself as (more the graphic designer) artist, editor, author, initiator, skilful rhetorician (or even) architect. The ambition of the designer always leads beyond his discipline and his official mandate.”<a class="footnoteContainer" ><sup>32</sup></a><span class="hidden footnote unclick" id="ref">Daniel van der Velden,  “Research &amp; Destroya Plea for Design as Research” Metropolis M, issue 2 2006</span> He wants out from the “traditional”, “familiar” framework and objective, historical definition of graphic design. Shklovsky and Wittgeinstein and might Braidotti would all confirm its change and calls, but the subject of change is not smaller than design and the designer itself. The proposal resonates in many levels, political, social, psychological, philosophical, but first and foremost it’s about resumption and reinvention of the form together with the content. Becoming holistic, relational and self-analogous. The posthuman designer proposes a new vision, a new arrangement, and calls for becoming the transition itself, refusing and detaching from the corporate, corrupt world, which is also a resignation from fame and financial wealth in our  “With the removal of need and the commissioned assignment as an inseparable duo, the door is open to new paths.
+
+                            </p>
+                            <p>
+                                The designer must use this freedom, for once, not to design something else, but to redesign himself.”<a class="footnoteContainer" ><sup>33</sup></a><span class="hidden footnote unclick" id="ref">Daniel van der Velden,  “Research &amp; Destroya Plea for Design as Research” Metropolis M, issue 2 2006</span> Anthony Dunne &amp; Fiona Raby, takes this conversation further by elaborating criticality and speculativity into design practice. They define design as possibility to make and alter existing worlds and world views. Accepting design as ideology as well as ideology as design.  They coined the confusing term: “critical design”, but not as fixed and absolute, rather than a thinking method, an attitude or position to begin with. They place technology their critical focus, “to question, critique, and challenge the way technologies enter our lives and the limitations they place on people through their narrow definition”<a class="footnoteContainer" ><sup>34</sup></a><span class="hidden footnote unclick" id="ref">Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span> and derive political, social and economic relations in intersectional ways. The “uncritical drive behind technological progress”<a class="footnoteContainer" ><sup>35</sup></a><span class="hidden footnote unclick" id="ref">Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span> is also a central issue in Braidotti’s view, when she is expressing her deep concerns towards the underrated power of techno-capitalistic interests. The design that produces such things, they call “affirmative design” that reinforces the actual status quo. What Daniel van der Velden suggest to “redesign himself” is what Dunne &amp; Raby attempt to target. “Critical designs are testimonials to what could be, but at the same time, they offer alternatives that highlight weaknesses within existing normality.”<a class="footnoteContainer" ><sup>36</sup></a><span class="hidden footnote unclick" id="ref">Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span> They are concerned that this system sceptic approach is fundamentally outside and against the corporate competition, therefore it’s traditional design market-value becomes closer to the art-world, where such a thing can take place. There is no measure of critical success in traditional marketplace, except the educational, artistic and intangible quality.  “Some design should always question prevailing values and their underlying assumptions and that this activity can sit beside mainstream design rather than replace it.”<a class="footnoteContainer" ><sup>37</sup></a><span class="hidden footnote unclick" id="ref">Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span> Being engaged and committed as a designer means great amounts of self-sacrifice as a moral duty, since it’s the battle field of the everyday, in which we place our principles. “Critical design needs to be closer to the everyday; that’s where its power to disturb lies.”<a class="footnoteContainer" ><sup>38</sup></a><span class="hidden footnote unclick" id="ref">Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span> As well as its pedagogical role.</p>
+
+                        </div>
+
+
+                    </div>
+                    <div class="footnote-list-print">
+                    </div>
+                </div>
+
+                                                                <!-- CHAPTER 3 -->
+
+
+
+
+                 <div class="chapter h2p-break-after" id="chapter-3">
+
+                        <h4 id="c12" class="panic" >
+                            Chapter III &#8211; <br> Panic and Excitement
+                        </h4>
+
+                        <div class="chapter-content-3">
+                            <div class="text">
+                            <h3 id="c13">
+                                Design becoming voice
+                            </h3>
+                            <p class="quote">
+                                <i>“Today we live in a society in which spurious realities are manufactured by the media, by governments, by big corporations, by religious groups, political groups... So, I ask, in my writing, what is real?” </i> Philip K Dick
+                            </p>
+
+                            <p>Our voice, comes through as our primary technology with which we use to communicate. It is in most cases biologically given that we can develop as we grow. To be able to share opinions, learn and discuss information, feelings and problems is part of our everyday activity. Do we really appreciate the power of our ability to speak and be understood? Making agreement has long time been politically mediated. Are we aware to what extent we are contributing to social and political issues with our voice? Are we using our voice? If “we believe to achieve change it is necessary to unlock people’s imaginations and apply it to all areas of life at a microscale. … by generating alternatives, can help people construct compasses rather than maps for navigating new sets of values.<a class="footnoteContainer" ><sup>39</sup></a><span class="hidden footnote unclick" id="ref">Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span> The ongoing series of work by Jonas Staal, <span >The new world summit</span> “is an artistic and political organization…. dedicated to providing “alternative parliaments” hosting organizations that currently find themselves excluded from democracy.”<a href="http://newworldsummit.org/"><sup>40</sup></a> Jonas Staal reinvented and brought the fundamental social form of democracy, the media of parliament, modern forum into art and design practice. Bringing the value of voice and discourse into art and design discourse. “In opposition to democratism the New World Summit explores the field of art as a space to re-imagine and act upon a fundamental practice of democracy.”<a href="http://newworldsummit.org/"><sup>41</sup></a> The act of designing events where we make discourse possible is a central part in Braidotti’s theory “We could arrive in a world where everything hold together, because of ethical relationality, not because of corporate sponsorship. Because of a deep sense of multiple belongings. We are not going to help wiping out differences, we have to work throught the differences, all to multiple ways of becoming posthuman. Multiple, rhizomatic, probably contradictory, but not a one-way road, for this humanity. We are in this together, but the ‘we’ is the people needs to be composed! It’s a community, that needs to be created. <a class="footnoteContainer" ><sup>42</sup></a><span class="hidden footnote unclick" id="ref">Lecture by Rosi Braidotti, Inhuman symposium, 2015, Das Fredericanum, Kassel</span>
+                            </p>
+
+
+
+                            <h3 id="c14">
+                                Design becoming hyperobject
+
+                            </h3>
+                            <p class="quote">
+                                <i>“We are all burnt by ultraviolet rays. We all contain water in about the same ratio as Earth does, and salt water in the same ratio that the oceans do. We are poems about the hyperobject Earth.” </i>
+                                Timoty Morton
+                            </p>
+                            <p>
+                                The term hyperobject is coined by Timoty Morton, it refers as a new planetary, cosmic reinvention of the “thing”. Timoty considers global warming, extinction or even humanity as hyperobject, refering to its non linear, inter relational and impossible aspect. How to talk about impossible, fundamentally non-anthropocentric measure as an artist or designer? The work of Katja Novitskova called Pattern of Activation, 2014 is addressing the “disappearance rate of biological species”,<a class="footnoteContainer" ><sup>43</sup></a><span class="hidden footnote unclick" id="ref">http://katjanovi.net/</span> questioning the aesthetics of bio-genetics and its consequences by juxtaposing the continues tragedy of extinction as hyperobject and the standard of economic growth. The installation wants to re-render “the evolutionary origins of the human psyche.. and the uniquely synthetic look of the albino horse”.<a class="footnoteContainer" ><sup>43</sup></a><span class="hidden footnote unclick" id="ref">http://katjanovi.net/</span> In the work of Olafur Eliason <a href="http://olafureliasson.net/archive/exhibition/EXH102457/the-presence-of-absence">The Presence of absence (2016-2017)</a> is a series of sculpture, that holds spaces of evanescence. His team transported 1500 kilogram ice from Greenland to cast a block concrete around it. As soon as the ice melts, an empty space left that reminds us the memory of that particular hyperobject, referring directly to the Anthropocene and melting icebergs.
+                            </p>
+
+                            <h3 id="c15">
+                                Design becoming undoing
+
+                            </h3>
+                            <p class="quote">
+                                <i>“Our vanity, our passions, our spirit of imitation, our abstract intelligence, our habits have long been at work, and it is the task of art to undo this work of theirs, making us travel back in the direction from which we have come to the depths where what has really existed lies unknown within us.”</i>
+                                Marcel Proust, Time Regained
+                            </p>
+                            <p>
+                                The design industry in most cases is contributing in some extent to symbolic violence, which is another reason to redefine making. Making is acting. Actions are made up from sequence of decision, design is not ends when we leave the studio or when we finish a project. Design takes place in all of our decisions. It is not different, when we eat, dress, travel or buy goods. We have free will to design our choices. I consider design refusing to consume, partake or buy any kind of products, that based on violence, exploitation especially referring to animals. I am not separating design from everyday moral obligation, I consider veganism as a design movement done by mostly non-designers. The ideology that it represents has enormous relevance to the post-anthropocentric condition. Veganism as a form of design practice is necessary to learn sacrifice and to understand life and death. Basically we have no knowledge and necessary public discourse about death. In the former solder, Roy Scanton’s important book, Learning to die in the Anthropocene, he points out that death is the synonym of grief, pain and sorrow, instead of look at it as destination, as possibility, as motivation. “…the practice of learning to die is the practice of learning to let go: Learning to die means learning to let go of the ego, the idea of the self, the future, certainty, attachment, the pursuit of pleasure, permanence, and stability. Learning to let go of salvation. Learning to let go of hope. Learning to let go of death.”<a class="footnoteContainer" ><sup>44</sup></a><span class="hidden footnote unclick" id="ref">Scranton, Roy (2015), Learning to Die in the Anthropocene, San Francisco: City Lights Publishers</span>
+                            </p>
+                              <p>
+                                Design has been a synonym of doing, making or building I would like to argue that it is also undoing, unlearning, unmaking. It is a way of reinventing, redesigning the making. Veganism is a denial of the “agrilogistical”<a class="footnoteContainer" ><sup>45</sup></a><span class="hidden footnote unclick" id="ref"> Morton, Timothy (2016), What is Dark Ecology?: For a Logic of Future Coexistence, Columbia Univeersity Press</span>, capitalist values and becomes an existential protest, a live manifesto in itself. One of the case studies of undoing can be very literary by erasing. The Australian artist Christian Capurro's project the Another Misspent Portrait of Etienne de Silhouette, using the act of erasure creating new meaning. It is not similar to destroying, it is closer to making. There is an undeniable reference to Rausenberg - Erased de Kooning drawing, but here we have a context of a Vogue magazine, a pop-cultural design product that emphasises the inevitable link to consumption. The symbolic act of removing the content of all pages, took long years by many people. It was also emphasised as labour, mentioning how long it took to erase. The artist of course payed an hourly rate.  The front and back covers of the magazine, though noticeably worn by years of scuffing, remain un-erased.
+                            </p>
+
+                            <h3 id="c16">
+                                Desgin becoming investigation
+                            </h3>
+                            <p class="quote">
+                                <i>““the importance of combining critique with creative figurations; the principle of non-linearity; the powers of memory and the imagination and the strategy of de-familiarization” </i> Rosi Braidotti
+                            </p>
+
+                            <p>
+                            I assume, investigation is one of the core activity of the posthuman design condition. One of the early example is The Whole Earth Catalog (1974) by Stewart Brand, using elaborate research method to gather the content of the magazine, that can foreshadow the internet of things. “The true investment is the investment in design itself, as a discipline that conducts research and generates knowledge – knowledge that makes it possible to seriously participate in discussions that are not about design.“<a class="footnoteContainer" ><sup>46</sup></a><span class="hidden footnote unclick" id="ref"> Yesomi Umolu, “Eyal Weizman and Architecture as Political Intervention.”, Walker, September 21, 2012, p.1–10.</span> One of my main example of this section of investigative design is the UK based Forensic Architecture. They investigating war-crimes by using project based forensic research methods, that uses advanced information-technology to provide truth and justice on the court hearing. It is not self-expression, it is bloody serious real-life story-telling, without mistakes. Eyal Wizman, the founder of the collective notes: “We actually unearthed its original meaning by reconstructing the genealogy of the term (forensics)— returning to the notion of forensics as “the art of the forum.”<a class="footnoteContainer" ><sup>47</sup></a><span class="hidden footnote unclick" id="ref"> Yesomi Umolu, “Eyal Weizman and Architecture as Political Intervention.”, Walker, September 21, 2012, p.1–10.</span> Joining design and art to its serious characteristic. With this move, they creates a design practice that works in both ways, one in a courtroom and one in art and design context, makes them very unique. “In my view, the practice of forensic architecture allows us to break the dichotomy, in both architecture and the art world, between pure form and social commentary.”<a class="footnoteContainer" ><sup>48</sup></a><span class="hidden footnote unclick" id="ref"> Yesomi Umolu, “Eyal Weizman and Architecture as Political Intervention.”, Walker, September 21, 2012, p.1–10.</span></p>
+
+                            <p>
+                            The book by Ruben Pater, <i>Politics of design</i> offers an analytical design dictionary or catalog, where he investigates what extent design decisions are interfering with political or social level, creating misunderstandings, confusion, or lies. Ruben using the technique of “disguise” and also “aspect change” to reveal the true relations of images, stories, leaders or typefaces that is not what they seem like. Untold stories, secrets, under coverings. The project by Metahaven, The Sprawl (2016), the propaganda about propaganda, dealing with the ideology as design as well as design as ideology. They use speculative designs to debate potential ethical, cultural, social, and political implications as well as using significant visual story-telling.Metahaven is one of the first studio that recognised the graphic design practice as a form of everything and nothing, as a form of resistance and displacement. When design comes to investigation, it becomes serious enough to become a threat to the powerful as a function of demystify it.</p>
+
+
+
+                            <h3 id="c17">
+                                Design becoming play
+
+                            </h3>
+                            <p class="quote">
+                                <i>““Games are popular art, collective, social reactions to the main drive or action of any culture. Games, like institutions, are extensions of social man and of the body politic, as technologies are extensions of the animal organism. “ </i> Marshall McLuhan
+                            </p>
+
+                            <p>
+                            Games, whether physical or digital are providing an interactive experience, where the participant literally becoming the part of the imagined world. “Ultimately it is positive and idealistic because we believe that change is possible, that things can be better; it is just that the way of getting there is different; it is an intellectual journey based on challenging and changing values, ideas, and beliefs.”<a class="footnoteContainer" ><sup>49</sup></a><span class="hidden footnote unclick" id="ref"> Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span> Janna Ullrich, the No Man’s Land and Márton Kabai - Success of today is tomorrows disaster both a table-top boardgame, that offers a speculative way of becoming the part of a social-economical-political problem in an intersectional way. The No Man’s land offers an insight of how complicated, inhuman and xenophobe the refugee crises is, while my work is mapping the relationship of the agriculture by opposing capitalist and anti-capitalist interest, offering an insight into what extent agriculture is contribute to animal suffering and climate change.
+
+                            </p>
+                             <h3 id="c18">
+                                Design becoming cure
+                            </h3>
+                            <p class="quote">
+                                <i>“Where there is love there is life.” </i> Mahatma Gandhi
+                            </p>
+
+                            <p>
+                            Healers, shamans, rituals, all medium and roles of the remaining indigenous world of today. Designers, and artists are approaching these ancient roles through various visual media, considering the faith, belief and spirituality as important as its aesthetics. How do we survive, comprehend the unimaginable slow process of collapse of natural life on the Earth and witnessing absurd resource exploitations and terror? Design can be a cure, can be healing, and can be spiritual. Who is going to deal with the wounds of the relentless systemic violence? “Nearly every other area of culture accepts that people are complicated, contradictory, and even neurotic, but not design.”<a class="footnoteContainer" ><sup>50</sup></a><span class="hidden footnote unclick" id="ref"> Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span> Design has partaken in massive scale of terror in the industrial scale. Tabita Rezaire’s work, the Sorry for real, offers a very fair situation, where the western world say sorry to all the colonized nations. Offering the imagination of such an uplifting, positive image, that is everyone know is fiction and speculation but Tabita considers imagination can cure mental or even physical wounds. The other great example is the Paris based couple Pinar &amp; Viola, whom reaction to violence is very sincere and direct. They package their kindness, care and attention into a fashion product called <i>Healing prints</i>. Giving a positive message, being rather optimistic in a very pessimistic world.
+
+                            </p>
+                             <h3 id="c19">
+                                Design becoming provocation
+
+                            </h3>
+                            <p class="quote">
+                                <i>“I like people who shake other people up and make them feel uncomfortable”. </i> Jim Morrison
+                            </p>
+
+                            <p>
+                            Provocation, distraction, embarrassment was all part of the 20th century Avant-Garde movements such as Dadaism as symptomatic consequences of the time.  “Safe ideas will not linger in people’s minds or challenge prevailing views but if it is too weird, it will be dismissed as art, and if too normal, it will be effortlessly assimilated If it is labelled as art it is easier to deal with but if it remains design, it is more disturbing; it suggests that the everyday life as we know it could be different, that things could change.”<a class="footnoteContainer" ><sup>51</sup></a><span class="hidden footnote unclick" id="ref"> Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span>  Provocation stands for the scale of belief on what we consider real. Good design is inherently provocative, through defamiliarization. Lifting up the skirt of truth can be very provocative and painful for average citizens, but “sometimes we can have more effect as citizens than as designers. Design can help raise awareness of the consequences of our actions as citizen-consumers”. Renzo Martenz documentary film is a great example of rising global uncanniness. Enjoy poverty - episode III, (2008) guide us through the landscape of poverty in Congo, watching the protagonist making western statements about how the global west exploits and profits from deep poverty. The film is autoreferential, does not give any hope, just a glimps of reality is shown throughout the plot. Poverty is constructed and maintained. The film provokes a realisation, that charities helping as much as exploiting. I have also responded with a book, Poverty Porn, (2016) where I created a double narrative; an image sequence on how charity adverts interprets poverty, and a text sequence that’s hidden behind the images. Each image page can be unfolded, which reveals a critical text, article or interview about how disgusting is the purposeful exploitation of the image of poverty. Janna Ullrich beautiful work, the A one week wonder, Monsanto’s imperium, imagines how many animals being slaughtered in order to feed thousands of passengers in a huge cruiser that is usually on water for weeks or months. She made an idealistic image of millions of farm animals grazing on an idealistic green land, and showing the fascinating cruiser at the back, as the final destination. Presenting a massacre in favour of the upper class, that affords to use the ship. One of my works: As if everything was fine, is a colouring book series, that maps the life of factory farm animals, such as pig, chicken and the cow, from birth until they become meal on the table. I wanted to show that the information on animal exploitation is available and not a secret what a horror is happening every day inside an agricultural factory. In oppose to the manipulation that most of the parents do with idealised farm-life colouring books, that stands very far from truth. Truth is becoming provocation, when it comes to children, we tend to protect them. But do we really protect them, by ignoring the truth and showing a fake reality or it is a way of prepare them what the actual system wants us to believe. Design is a tool that can flip heavy things over.
+
+                            </p>
+                             <h3 id="c20">
+                                Design becoming darkness
+
+                            </h3>
+                            <p class="quote">
+                                <i>“Life on our planet has been a constant series of cataclysmic events, and we are more suitable for extinction than a trilobite or a reptile. So we will vanish. There's no doubt in my heart.” </i> Werner Herzog
+                            </p>
+
+                            <p>
+                            “In today’s economy it is as consumers that we have power. The most threatening act of protest for a capitalist system would be for its citizens to refuse to consume” <a class="footnoteContainer" ><sup>52</sup></a><span class="hidden footnote unclick" id="ref"> Dunne, A, Fiona, R (2013), Speculative Everything. Cambridge: MIT Press</span>  Darkness as an antidote to naive techno-utopianism, the positive use of negativity. Dark design is driven by idealism, speculation and optimism. While we are more than ever aware of both the promise and the threat of technological advance, we still lack the intellectual awareness. Broersen&amp;Lukács film, the Establishing Eden (2016), presents and uncanny, mysterious sublime of the “corporate” nature of Hollywood movies. Without any extra narrative, the film turn into a trigger of becoming, however using only flat photographs in a 3D space, makes it very depressing and distant. Ed Atkins, Ribbons, 2014 shows a beautiful poetic work of something beyond human, beyond of our becoming. The protagonist is a 3D character, that feels like an empty model, being used to represents a narrative. Bjorn Melhus, in his movie, Captain (2005), tries to reconfigure and twist the early 80’s science fiction TV film aesthetics, by reproducing a space scene, with dialogues that extracted from films and tv shows. The work of the Paris based studio, Golgotha, Archaeology from the future, (2013), builds on a possible corporate future narrative, where the most valuable currency become the sperm itself. The work is speculating on a commercial of a Life-stock company, that promoting its new sperm products. The Uterus Man by LuYang explores a transhuman idea of the future super-woman, half organic, half machine, whose menstrual blood makes her so powerful that she can fly as a transhumanist heroine.
+
+                            </p>
+                             <h3 id="c21">
+                                Design becoming allyship
+
+                            </h3>
+                            <p class="quote">
+                                <i>“You, the people, have the power, the power to create machines, the power to create happiness! You, the people, have the power to make this life free and beautiful, to make this life a wonderful adventure. Then in the name of democracy, let us use that power. Let us all unite. Let us fight for a new world, a decent world that will give men a chance to work, that will give youth a future and old age a security.” </i> Charlie Chaplin (Dictator)
+                            </p>
+                            <p>
+                            Allyship is about making friends, connecting the practitioner (designer) and theorist (scientist), The posthuman designer has to open towards various fields of studies, disciplines in search of new context, new vision and new collaborations to develop a new arrangement of working together. Finding our non-designer peers is essential for the posthuman context. The practice of developing ideas, and the practice of materialising possibilities complement each other. The Design Displacement Group (DDG) finds its core aspect in collaboration as part of its design or art practice. They regard themselves as a collective tribe of similar souls, that need each other to make the imagination come true. The group consists of various disciplines, like designers, coders, writers and scientists. Unfortunately, allyship is working only within a particular field of knowledge, but there is a lack of independent, voluntary cross collaboration between design and other disciplines. For instance, universities filled with scientists and researchers develop elaborate research projects, where in design, this approach is absolutely missing. Maybe they only exist in levels of necessities or standards, like 12pt Times font requirements. We have to initiate discourse with other fields, we have to be open for other methods, languages and cultures. We have to extends our western limitations and be much more open for becoming’s. We have to connect in the age of disconnection.
+
+                            </p>
+
+                        </div>
+
+                    <div class="images">
+                            <div class="image">
+
+
+                                <img src="img/chapter3/1-2.jpg">
+                                <div class="image-caption">
+                                    <p>Jonas Staal, New World Summit, Berlin</p>
+                                </div>
+
+                                <img src="img/chapter3/1-4.jpg">
+                                <div class="image-caption">
+                                    <p>Jonas Staal, New World Summit, Berlin</p>
+                                </div>
+                                <img src="img/chapter3/1-3.png">
+                                <div class="image-caption">
+                                    <p>Coca Cola Commercial - I'd Like to Teach the World to Sing (In Perfect Harmony) - 1971</p>
+                                </div>
+                                <img src="img/chapter3/1-1.jpg">
+                                <div class="image-caption">
+                                    <p>Stock photo on diverse people</p>
+                                </div>
+                                <img src="img/chapter3/2-1.jpg">
+                                <div class="image-caption">
+                                    <p>Olafur Eliasson, The presence of absence, 2016 </p>
+                                </div>
+
+                                <img src="img/chapter3/2-3.jpg">
+                                <div class="image-caption">
+                                    <p>Olafur Eliasson, The presence of absence, 2016 </p>
+                                </div>
+                                    <img src="img/chapter3/2-2.jpg">
+                                <div class="image-caption">
+                                    <p>Katja Novitskova, Pattern of Activation, 2014</p>
+                                </div>
+                                <img src="img/chapter3/3-1.jpg">
+                                <div class="image-caption">
+                                    <p>Robert Rauschenberg, Erased de Kooning Drawing, 1953</p>
+                                </div>
+                                <img src="img/chapter3/3-2.jpg">
+                                <div class="image-caption">
+                                    <p>Christian Capurro, Another Misspent Portrait of Etienne de Silhouette</p>
+                                </div>
+                                <img src="img/chapter3/3-3.jpg">
+                                <div class="image-caption">
+                                    <p>Christian Capurro, Another Misspent Portrait of Etienne de Silhouette</p>
+                                </div>
+                                <img src="img/chapter3/4-5.jpg">
+                                <div class="image-caption">
+                                    <p>Stewart Brand, Whole Earth Catalog, fall, 1968 </p>
+                                </div>
+                                <img src="img/chapter3/4-1.jpg">
+                                <div class="image-caption">
+                                    <p>Ruben Pater, The politics of design, 2016</p>
+                                </div>
+                                <img src="img/chapter3/4-2.jpg">
+                                <div class="image-caption">
+                                    <p>Metahaven, The Sprawl (2016)</p>
+                                </div>
+                                <img src="img/chapter3/4-3.png">
+                                <div class="image-caption">
+                                    <p>Forensic architecture, Black Friday</p>
+                                </div>
+                                <img src="img/chapter3/4-4.png">
+                                <div class="image-caption">
+                                    <p>Forensic architecture, Black Friday</p>
+                                </div>
+
+
+                                <img src="img/chapter3/5-1.jpg">
+                                <div class="image-caption">
+                                    <p> Janna Ullrich, No Man’s Land, 2015</p>
+                                </div>
+                                <img src="img/chapter3/5-2.jpg">
+                                <div class="image-caption">
+                                    <p>Marton Kabai, Success of today istomorrow's disaster, 2016</p>
+                                </div>
+
+
+                                <img src="img/chapter3/6-2.png">
+                                <div class="image-caption">
+                                    <p>Tabita Rezaire, Sorry for real</p>
+                                </div>
+                                <img src="img/chapter3/6-1.jpg">
+                                <div class="image-caption">
+                                    <p>Pinar &amp; Viola, Healing Prints</p>
+                                </div>
+                                <img src="img/chapter3/6-3.png">
+                                <div class="image-caption">
+                                    <p>Pinar &amp; Viola, Healing Prints</p>
+                                </div>
+                                <img src="img/chapter3/7-1.jpg">
+                                <div class="image-caption">
+                                    <p>Renzo Martenz, Enjoy poverty - episode III, (2008)</p>
+                                </div>
+                                <img src="img/chapter3/7-2.jpg">
+                                <div class="image-caption">
+                                    <p>Marton Kabai, Poverty Porn, 2016</p>
+                                </div>
+                                <img src="img/chapter3/7-4.jpg">
+                                <div class="image-caption">
+                                    <p>Marton Kabai, Poverty Porn, 2016</p>
+                                </div>
+                                <img src="img/chapter3/7-3.jpg">
+                                <div class="image-caption">
+                                    <p>Marton Kabai, As if everything was fine, 2015</p>
+                                </div>
+
+                                <img src="img/chapter3/7-5.png">
+                                <div class="image-caption">
+                                    <p>Janna Ullrich, A one week wonder, Monsanto’s imperium</p>
+                                </div>
+                                <img src="img/chapter3/8-4.jpg">
+                                <div class="image-caption">
+                                    <p>Broersen&amp;Lukács, the Establishing Eden (2016)</p>
+                                </div>
+                                <img src="img/chapter3/8-2.jpg">
+                                <div class="image-caption">
+                                    <p>Ed Atkins, Ribbons, 2014</p>
+                                </div>
+                                <img src="img/chapter3/8-3.jpg">
+                                <div class="image-caption">
+                                    <p>Bjorn Melhus, Captain, 2005</p>
+                                </div>
+                                <img src="img/chapter3/8-5.png">
+                                <div class="image-caption">
+                                    <p>Golgotha, Archaeology from the future, (2013)</p>
+                                </div>
+                                <img src="img/chapter3/8-1.jpg">
+                                <div class="image-caption">
+                                    <p>LuYang, The Uterus Man  </p>
+                                </div>
+
+                                <img src="img/chapter3/8-6.jpg">
+                                <div class="image-caption">
+                                    <p>DDG, No exit, 2016</p>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footnote-list-print"></div>
+             </div>
+
+
+
+                                                                    <!-- EPILOGUE -->
+
+
+
+
+            <div class="chapter h2p-break-after" id="chapter-4">
+                <div >
+
+                    <div class="epilogue">
+                        <h3 id="c22">
+
+                            Epilogue
+                        </h3>
+                        <p>
+                            Graphic design is in constant flux, since it has no fixed and absolute definition, shape or scale. However, I tried to approach it from the posthuman condition in which I considered design as a possibility to question, overthrown and reinvent the status quo. The Anthropocene can be seen just another reason to reinforce design as resistance, but its more than that. We have to declare, that it is a war and we are solders. The ambivalent situation of environmental collapse, the technological excitement, the failed promise of the man and the demagogue ideology of the economic system urge us to initiate change within the fixed and absolute.We have to connect with each other and reinvent ourselves and reinvent “making”. I argue that the posthuman designers must resist, investigate, question and dare to imagine to empower the sleeping resistance. It is a now-or-never situation. Desire is the ultimate drive for becoming, therefore “Intensive spaces of becoming have to be opened and, more importantly, to be kept open.” We as designers of the Anthropocene have enormous responsibility that will be weighed by time.
+                        </p>
+
+                        <p>
+                            Graphic design is in continuous morphing and transforming in relation to everything else. The thing that is fixed is that everything is in a transition. Deleuze and Guttari look at design as “making worlds”, thus creating futures. There is an inherent post-critical, post-speculative focus in it, where design not by accident, but purpousfully goes against the “definition”. “Taken as a force, a disruption, and a process, design is here taken as the embodiment of possible worlds.”<a class="footnoteContainer" ><sup>53</sup></a><span class="hidden footnote unclick" id="ref">Marenko, Betti, (2015), Deleuze and design. Edinburgh University Press, p.1–35</span> To design means to engage with the new, thorough the old, the excluded, the possible, the potential, the impossible. It is about believing to able to affect reality with imagination as imagination is reality. “To design means always to engage with what is not-yet but could be.” <a class="footnoteContainer" ><sup>54</sup></a><span class="hidden footnote unclick" id="ref">Marenko, Betti, (2015), Deleuze and design. Edinburgh University Press, p.1–35</span> Thus, the present emerges as the embodiment of a thought. “Every designed object contains in itself the seeds of future practices and future behaviours.” <a class="footnoteContainer" ><sup>55</sup></a><span class="hidden footnote unclick" id="ref">Marenko, Betti, (2015), Deleuze and design. Edinburgh University Press, p.1–35</span> The work of art, they argue, “does not actualize the virtual event but incorporates or embodies it: it gives it a body, a life, a universe. These universes are neither virtual nor actual; they are possibles, the possible as aesthetic category.”
+
+                        </p>
+                        <p>
+                            The sort of design practice that I would value is to be found in collaboration with other areas of self-critical and radical human and non-human knowledge, where we can combine and align our visual and cognitive skills to alternative, revolutionary aspiration. Considering recent political developments worldwide which appear to have fallen hostage to reactive social responses, more than ever we will need to establish communication systems and open our strong hearts that have the ability to enlighten, inform and inspire to action. Design has a duty and a mission with its “crucial role in the dreamworld of commodities”<a class="footnoteContainer" ><sup>55</sup></a><span class="hidden footnote unclick" id="ref">Howard, Andrew. “Design Beyond Commodification / Article”, Eye magazine, issue 38, volume 10, winter 2000, p.1–6</span> creates and maintains “the symbolic connection between the power structures and our experience of reality.” <a class="footnoteContainer" ><sup>55</sup></a><span class="hidden footnote unclick" id="ref">Howard, Andrew. “Design Beyond Commodification / Article”, Eye magazine, issue 38, volume 10, winter 2000, p.1–6</span>
+
+                        </p>
+                    </div>
+
+                    <div class="bibliography">
+                        <h3 id="c23">
+
+                            Bibliography
+                        </h3>
+                        <p>
+                           List of sources
+                        </p>
+
+                    </div>
+                    <div class="colophone">
+                        <h3 id="c24">
+
+                            Colophone
+                        </h3>
+                        <p>
+                           The part where I say thank you and other
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+                <div class="footnote-list-print">
+
+                </div>
+         </div>
+    </body>
+</html>
