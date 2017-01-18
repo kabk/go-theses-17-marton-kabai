@@ -16,6 +16,8 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700');
 @import url('https://fonts.googleapis.com/css?family=Neuton:400,400i,700');
 @import url('https://fonts.googleapis.com/css?family=Overpass:400,400i,700');
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
 
 
 body{
@@ -48,8 +50,16 @@ sup, sub {
     vertical-align: baseline;
     position: relative;
     top: -0.4em;
+    color:black !important;
 }
 
+img {
+
+     -webkit-filter: drop-shadow(4px 4px 1px #ccc);
+    text-shadow: 4px 4px 1px #ccc;
+    filter: grayscale(100%);
+    width: 12cm;
+}
 
 .footnoteContainer sup{
     color: red;
@@ -62,7 +72,9 @@ sub {
 
 .sidenav{
     display: block;
-    width: 100%;
+    width: 15cm;
+    font-size: 18pt;
+    text-align: left;
 }
 
 .sidenav a{
@@ -72,6 +84,11 @@ sub {
 
 .sidenav .subtitle{
     margin-left: 5mm;
+}
+
+.abstract h3 {
+    display: none;
+
 }
 
 .abstract .hidden {
@@ -99,23 +116,28 @@ sub {
     width: 95%;
 }
 
+
+
 .footnote-num{
     width: 5%;
 }
 
 .image-caption{
-    font-size: 12pt;
+    margin-top: 5mm;
+    font-size: 10pt;
     margin-bottom: 10mm !important;
     font-family: "Space Mono"
 }
 
 
 .coverpage h3{
-    font-size: 60pt;
+
+    font-size: 62pt;
     text-transform: uppercase;
     line-height: 1.3em;
     font-family: 'Asul', sans-serif;
-    filter: blur(3px);
+    filter: blur(5px);
+
 }
 
 .coverpage .meta{
@@ -138,15 +160,118 @@ sub {
     background-color: black;
 }
 
+#chapter-1 h3 {
+    background: black;
+    padding: 4mm;
+    color: white;
+    font-size: 28pt;
+   /* -webkit-filter: drop-shadow(4px 4px 1px red);
+    text-shadow: 4px 4px 1px red;*/
+}
+
+#chapter-2 h3 {
+
+    font-family: 'Oswald';
+    -webkit-filter: drop-shadow(4px 4px 1px #ccc);
+    text-shadow: 4px 4px 1px #ccc;
+    text-transform: uppercase;
+    font-size: 24pt;
+
+
+}
+
+#chapter-3 h3 {
+
+    font-family: 'Orbitron';
+    font-size: 28pt;
+    -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+
+
+}
+
+#chapter-2 .bodytext {
+
+    font-family: 'Alegreya';
+    font-size: 18pt;
+
+
+}
+
+#chapter-3 .bodytext {
+
+    font-family: 'Work Sans', sans-serif;
+    font-size: 20pt;
+
+
+}
+
+
+#chapter-1 .bodytext p {
+    font-size: 16pt;
+
+}
+
+#chapter-1 .quote {
+
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 18pt;
+    padding-top: 3cm;
+}
+
+#chapter-2 .quote {
+
+    font-family: 'Asul', sans-serif;
+    font-style: italic;
+    font-size: 16pt;
+    padding-top: 3cm;
+}
+
+#chapter-3 .quote {
+
+    font-family: 'Nothing You Could Do', cursive;
+    font-size: 18pt;
+    padding-top: 2cm;
+}
+
+
+.meta {
+
+    font-family: 'Asul';
+    font-style: italic;
+    font-size: 18pt;
+}
+
+.ures {
+    height: 4cm;
+}
+
+
 #chapter-1 h4 {
+
     font-family: 'Creepster', cursive;
+    font-size: 190pt;
+    height: 10cm;
+    -webkit-filter: drop-shadow(4px 4px 1px #ccc);
+    text-shadow: 4px 4px 1px #ccc;
+
+
 }
 
 #chapter-2 h4 {
     font-family: 'Cinzel Decorative', cursive;
+      -webkit-filter: drop-shadow(4px 4px 1px #ccc);
+    text-shadow: 4px 4px 1px #ccc;
+
 }
 
 
 #chapter-3 h4 {
     font-family: 'Nothing You Could Do', cursive;
+    color: black;
+    font-size: 60pt;
+   -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+   -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
 }

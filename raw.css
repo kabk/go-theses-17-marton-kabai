@@ -39,6 +39,8 @@ html, body, h1, h2, h3, h4{
 
 body{ 
     font-family: 'Proza Libre', sans-serif;
+     -webkit-print-color-adjust: exact;
+
 }
 
 
@@ -103,12 +105,19 @@ sub {
   /*size: A4 portrait;*/
 }
 
+
 @page :left {
-  margin-left: 3cm;
+  margin-left: 2cm;
 }
 
 @page :right {
-  margin-left: 4cm;
+  margin-left: 2cm;
+}
+
+@page:right{
+  @bottom-right {
+    content: counter(page);
+  }
 }
 
 
@@ -116,6 +125,7 @@ sub {
 
 .footnote-list-print{
     display: none;
+    page-break-before: always;
 }
 
 .header-print{
@@ -376,7 +386,7 @@ sub {
 
 }
 
-.author {
+.author a{
 
     border-bottom: solid 1px black;
     }
@@ -388,12 +398,13 @@ sub {
 
 .meta {
 
-    font-family: 'Proza Libre', sans-serif;    
-    font-size: 1.8vw;
+    font-family: 'Asul', sans-serif;    
+    font-size: 1.4vw;
     display: flex;
     font-style:italic;
     padding-left: 5%;
     padding-bottom: 5%;
+    padding-top: 10%;
 }
 
 /*******************************************************
@@ -436,7 +447,7 @@ sub {
 
 #chapter-1 h4 {
 
-    font-size: 13.5vw;
+    font-size: 18vw;
     font-family: 'Creepster', cursive;
     /*font-family: 'Chelsea Market', cursive;*/
 
@@ -449,10 +460,14 @@ sub {
 
     font-family: 'Cinzel Decorative', cursive;
     margin-right: 5%;
-    font-size: 9vw;
+    font-size: 11vw;
 
 }
 
+#chapter-2 .bodytext{
+
+    font-family: 'Alegreya';
+}
 
 
 .chapter-content-2 h3 {
@@ -485,6 +500,13 @@ sub {
 
 .quote {
     padding-left: 10%;
+    padding-top: 10%;
+}
+
+#chapter-2 .quote {
+    color: white;
+    font-family: 'Cinzel Decorative', cursive;
+    padding-bottom: 5%;
 }
 
 
@@ -571,7 +593,7 @@ sub {
             url("http://downloads.totallyfreecursors.com/thumbnails/bluemultiglit.gif"), auto;
 }
 
-#chapter-1 sup {
+#chapter-1 p sup {
 
     color: red;
 }
@@ -586,12 +608,12 @@ sub {
     color: orange;
 }
 
-#chapter-3 sup{
+#chapter-3 p sup{
     color: blue;
     
 }
 
-#chapter-4 sup{
+#chapter-4 p sup{
     color: red;
     
 }
@@ -623,6 +645,21 @@ font-family: 'space mono';
         box-shadow: 6px -1px 14px 1px #ff0000;
 
 }
+
+#chapter-2 img {
+
+        box-shadow: 6px -1px 14px 1px white;
+        margin-top: 5%;
+
+}
+
+#chapter-2 .image-caption {
+
+        font-size: 1.8vw;
+
+}
+
+
 #chapter-3 .image img {
 
         box-shadow: 3px 3px 20px 1px black;
@@ -633,6 +670,8 @@ font-family: 'space mono';
 /*background colors */
 
 @media screen {
+
+
     
     .chapter.elso{
 
