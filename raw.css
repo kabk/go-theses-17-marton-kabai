@@ -805,6 +805,9 @@ font-family: 'space mono';
 
 }
 
+footer {
 
+    background: linear-gradient(grey, white);
+}
 
 
