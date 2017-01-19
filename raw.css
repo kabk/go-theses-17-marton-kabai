@@ -634,8 +634,14 @@ sub {
 .excitement {
     padding-top: 10%;
 
+    }
 
+.chapter-header {
+
+    padding-top: 10%;
 }
+
+
 
 .images{
     flex: 0.5;
